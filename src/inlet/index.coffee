@@ -1,4 +1,8 @@
-app = require('derby').createApp module
+derby = require('derby')
+app = derby
+  .createApp module
+
+derby.use(require '../../ui')
 require './pages.coffee'
 
 require './inlet.coffee'
