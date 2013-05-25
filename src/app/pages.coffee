@@ -6,7 +6,8 @@ app.pages =
     href: '/'
   inlet:
     title: 'inlet'
-    href: '/inlet'
+    root: '/inlet'
+    gist: '/inlet/:gistId'
   back:
     title: 'Back redirect'
     href: '/back'
