@@ -12,6 +12,10 @@ require './inlet.coffee'
     args = JSON.stringify {method, body, query}, null, '  '
     page.render 'submit', {args}
 
+    
+app.get app.pages.home.href, (page) ->
+  page.render 'home'
+  
 app.get app.pages.error.href, ->
   throw new Error 500
 
