@@ -1,0 +1,461 @@
+// Display:
+// appearance
+// box-align
+// box-flex
+// box-sizing
+// box-orient
+// box-pack
+// display-box
+// overflow-sroll
+// user-select
+//
+// Decoration
+// background-linear-gradient
+// background-radial-gradient
+// border-radius
+// border-top-left-radius
+// border-top-right-radius
+// border-bottom-left-radius
+// border-bottom-right-radius
+// box-shadow
+// text-shadow
+//
+// Transformation
+// backface-visibility
+// matrix
+// perspective
+// perspective-origin
+// rotate
+// scale
+// skew
+// transform
+// transform-origin
+// transform-style
+// translate
+// translate3d
+//
+// Animation
+// transition
+
+// @see http://www.w3.org/TR/css3-flexbox/
+// @see http://www.html5rocks.com/en/tutorials/flexbox/quick/
+//
+//display-box()
+//  display: -webkit-box
+///* @alternate */
+//  display: -moz-box
+///* @alternate */
+//  display: -ms-box
+///* @alternate */
+//  display: -o-box
+///* @alternate */
+//  display: box
+
+
+// @param value : horizontal | vertical | inherit
+//
+// @see http://www.w3.org/TR/css3-flexbox/
+// @see http://www.html5rocks.com/en/tutorials/flexbox/quick/
+
+box-orient(value)
+  -webkit-box-orient: value
+  -moz-box-orient: value
+  -ms-box-orient: value
+  -o-box-orient: value
+  box-orient: value
+
+
+// @param value : start | end | center | justify
+//
+// @see http://www.w3.org/TR/css3-flexbox/
+// @see http://www.html5rocks.com/en/tutorials/flexbox/quick/
+
+box-pack(value)
+  display-box()
+
+  -webkit-box-pack: value
+  -moz-box-pack: value
+  -ms-box-pack: value
+  -o-box-pack: value
+  box-pack: value
+
+
+// @param value : start | end | center | baseline | stretch
+//
+// @see http://www.w3.org/TR/css3-flexbox/
+// @see http://www.html5rocks.com/en/tutorials/flexbox/quick/
+
+box-align(value)
+  display-box()
+
+  -webkit-box-align: value
+  -moz-box-align: value
+  -ms-box-align: value
+  -o-box-align: value
+  box-align: value
+
+// @param value : 0 | Integer
+//
+// @see http://www.w3.org/TR/css3-flexbox/
+// @see http://www.html5rocks.com/en/tutorials/flexbox/quick/
+
+box-flex(value)
+  display-box()
+
+  -webkit-box-flex: value
+  -moz-box-flex: value
+  -ms-box-flex: value
+  -o-box-flex: value
+  box-flex: value
+
+// @param value : content-box | padding-box | border-box | inherit
+// @see http://www.w3.org/TR/css3-ui/#box-sizing
+
+box-sizing(value)
+  -webkit-box-sizing: value
+  -moz-box-sizing: value
+  box-sizing: value
+
+overflow-scroll()
+  -webkit-overflow-scrolling: touch
+  overflow: scroll
+
+// @param value : none | text | toggle | element | elements | all | inherit
+// @see http://www.w3.org/TR/2000/WD-css3-userint-20000216#user-select
+
+user-select(value)
+  -webkit-touch-callout: value
+  -webkit-user-select: value
+  -moz-user-select: value
+  -ms-user-select: value
+  -o-user-select: value
+  user-select: value
+
+// @param value : button | push-button | hyperlink  radio-button | checkbox |
+//                pop-up-menu | list-menu | radio-group | checkbox-group |
+//                field | password | normal | inherit | none
+//
+// @see http://www.w3.org/TR/css3-ui/#appearance
+// @see http://www.cssportal.com/css-properties/appearance.htm
+// @see https://developer.mozilla.org/en/CSS/-moz-appearance
+appearance(value)
+  -webkit-appearance: value
+  -moz-appearance: value
+  -ms-appearance: value
+  -o-appearance: value
+  appearance: value
+
+// @param top-left-radius     : px, em, %
+// @param top-right-radius    : px, em, %
+// @param bottom-right-radius : px, em, %
+// @param bottom-left-radius  : px, em, %
+//
+// @see http://www.w3.org/TR/css3-background/#border-radius
+border-radius(value)
+  -webkit-border-radius: value
+  -moz-border-radius: value
+  border-radius: value
+  -webkit-background-clip: padding-box
+  -moz-background-clip: padding
+  background-clip: padding-box
+
+
+border-top-left-radius(value)
+  -webkit-border-top-left-radius: value
+  -moz-border-radius-topleft: value
+  -ms-border-top-left-radius: value
+  -o-border-top-left-radius: value
+  border-top-left-radius: value
+
+border-top-right-radius(value)
+  -webkit-border-top-right-radius: value
+  -moz-border-radius-topright: value
+  -ms-border-top-right-radius: value
+  -o-border-top-right-radius: value
+  border-top-right-radius: value
+
+
+border-bottom-left-radius(value)
+  -webkit-border-bottom-left-radius: value
+  -moz-border-radius-bottomleft: value
+  -ms-border-bottom-left-radius: value
+  -o-border-bottom-left-radius: value
+  border-bottom-left-radius: value
+
+
+border-bottom-right-radius(value) 
+  -webkit-border-bottom-right-radius: value
+  -moz-border-radius-bottomright: value
+  -ms-border-bottom-right-radius: value
+  -o-border-bottom-right-radius: value
+  border-bottom-right-radius: value
+
+
+box-shadow(value)
+  -webkit-box-shadow: value
+  -moz-box-shadow: value
+  box-shadow: value
+
+
+// @param colour            : #000, rgba, hsla
+// @param horizontal-offset : px, em
+// @param vertical-offset   : px, em
+// @param blur-radius       : px, em
+//
+// @see http://www.w3.org/TR/css3-text/#text-shadow
+text-shadow(value)
+  text-shadow: value
+
+// @param angle   : top, left, 90deg
+// @param colourA : #000 0%, red 0%
+// @param colourB : #000 50%, red 50%
+// @param colourC : #000 100%, red 100%
+//
+// @example background-linear-gradient("top, crimson 0%, black 100%");
+//
+// @see http://dev.w3.org/csswg/css3-images/#linear-gradients
+background-linear-gradient(value) {
+  background-image: -webkit-linear-gradient(value)
+/* @alternate */
+  background-image: -moz-linear-gradient(value)
+/* @alternate */
+  background-image: -ms-linear-gradient(value)
+/* @alternate */
+  background-image: -o-linear-gradient(value)
+/* @alternate */
+  background-image: linear-gradient(value)
+}
+
+
+// @param location : left top, 50% 50%
+// @param shape    : circle, ellipse, 100% 75%
+// @param colourA  : #000 0%, red 0%
+// @param colourB  : #000 50%, red 50%
+// @param colourC  : #000 100%, red 100%
+//
+// @example background-radial-gradient("50% 50%, circle, crimson 0%, black 100%");
+//
+// @see http://dev.w3.org/csswg/css3-images/#radial-gradients
+background-radial-gradient(value){
+  background-image: -webkit-radial-gradient(value)
+/* @alternate */
+  background-image: -moz-radial-gradient(value)
+/* @alternate */
+  background-image: -ms-radial-gradient(value)
+/* @alternate */
+  background-image: -o-radial-gradient(value)
+/* @alternate */
+  background-image: radial-gradient(value)
+}
+
+
+// @param functions : matrix(), translate(), scale(), rotate(), skew()
+//
+// @see http://www.w3.org/TR/css3-2d-transforms/
+transform(value)
+  -webkit-transform: value
+  -moz-transform: value
+  -ms-transform: value
+  -o-transform: value
+  transform: value
+
+
+// @param value : left | center | right | px | em | %
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-origin-property
+transform-origin(value)
+  -webkit-transform-origin: value
+  -moz-transform-origin: value
+  -ms-transform-origin: value
+  -o-transform-origin: value
+  transform-origin: value
+
+
+// @param value : preserve-3d | flat
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-style-property
+transform-style(value)
+  -webkit-transform-style: value
+  -moz-transform-style: value
+  -ms-transform-style: value
+  -o-transform-style: value
+  transform-style: value
+
+
+// @param value : none | 0, 1, 100, 1000, etc
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#perspective-property
+perspective(value)
+  -webkit-perspective: value
+  -moz-perspective: value
+  -ms-perspective: value
+  -o-perspective: value
+  perspective: value
+
+
+// @param value: left | center | right | px | em | %
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#perspective-origin-property
+perspective-origin(value)
+  -webkit-perspective-origin: value
+  -moz-perspective-origin: value
+  -ms-perspective-origin: value
+  -o-perspective-origin: value
+  perspective-origin: value
+
+
+// @param value :  visible | hidden
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#backface-visibility-property
+backface-visibility(value)
+  -webkit-backface-visibility: value
+  -moz-backface-visibility: value
+  -ms-backface-visibility: value
+  -o-backface-visibility: value
+  backface-visibility: value
+
+
+// @param a : Number
+// @param b : Number
+// @param c : Number
+// @param d : Number
+// @param e : Number
+// @param f : Number
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-functions
+matrix(value)
+  -webkit-transform: matrix(value)
+  -moz-transform: matrix(value)
+  -ms-transform: matrix(value)
+  -o-transform: matrix(value)
+  transform: matrix(value)
+
+
+// @param translate-x : px
+// @param translate-y : px
+//
+// http://www.w3.org/TR/css3-3d-transforms/#transform-functions
+transform-translate(value)
+  -webkit-transform: translate(value)
+  -moz-transform: translate(value)
+  -ms-transform: translate(value)
+  -o-transform: translate(value)
+  transform: translate(value)
+
+
+transform-translate3d(value)
+  -webkit-transform: translate3d(value)
+  -moz-transform: translate3d(value)
+  -ms-transform: translate3d(value)
+  -o-transform: translate3d(value)
+  transform: translate3d(value)
+
+
+// @param scale-x :  0.5, 2, etc
+// @param scale-y :  0.5, 2, etc
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-functions
+transform-scale(value)
+  -webkit-transform: scale(value)
+  -moz-transform: scale(value)
+  -ms-transform: scale(value)
+  -o-transform: scale(value)
+  transform: scale(value)
+
+
+// @param angle : 0deg
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-functions
+transform-rotate(value)
+  -webkit-transform: rotate(value)
+  -moz-transform: rotate(value)
+  -ms-transform: rotate(value)
+  -o-transform: rotate(value)
+  transform: rotate(value)
+
+
+// @param axis-x : 0deg
+// @param axis-y : 0deg
+//
+// @see http://www.w3.org/TR/css3-3d-transforms/#transform-functions
+skew(value)
+  -webkit-transform: skew(value)
+  -moz-transform: skew(value)
+  -ms-transform: skew(value)
+  -o-transform: skew(value)
+  transform: skew(value)
+
+
+// @param properties : all, left, opacity, etc
+// @param duration   :  1s, 1000ms
+// @param delay      :  1s, 1000ms
+// @param easing     :  linear, ease-in-out, etc
+//
+// @see http://www.w3.org/TR/css3-transitions/
+transition(value)
+  -webkit-transition: value
+  -moz-transition: value
+  -ms-transition: value
+  -o-transition: value
+  transition: value
+
+
+animate(name = fadeIn, duration = 1s, delay = .2s, function = ease, mode = both)
+  -moz-animation: name duration delay function mode
+  -webkit-animation: name duration delay function mode
+  animation: name duration delay function mode
+
+
+animate-delay(delay = .0s)
+  -moz-animation-delay: delay
+  -webkit-animation-delay: delay
+  -ms-animation-delay: delay
+  -o-animation-delay: delay
+  animation-delay: delay
+
+
+animate-duration(duration = 1s)
+  -moz-animation-duration: duration
+  -webkit-animation-duration: duration
+  -ms-animation-duration: duration
+  -o-animation-duration: duration
+  animation-delay: duration
+
+
+@-webkit-keyframes preloader
+  0%
+  25%
+    transform-scale(1.1)
+  50%
+    transform-scale(1.2)
+  75%
+    transform-scale(1.1)
+
+@-moz-keyframes preloader
+  0%
+  25%
+    transform-scale(1.1)
+  50%
+    transform-scale(1.2)
+  75%
+    transform-scale(1.1)
+
+
+@-o-keyframes preloader
+  0%
+  25%
+    transform-scale(1.1)
+  50%
+    transform-scale(1.2)
+  75%
+    transform-scale(1.1)
+
+
+@keyframes preloader
+  0%
+  25%
+    transform-scale(1.1)
+  50%
+    transform-scale(1.2)
+  75%
+    transform-scale(1.1)
