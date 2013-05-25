@@ -4,35 +4,22 @@ app.pages =
   home:
     title: 'Home'
     href: '/'
-  liveCss:
-    title: 'Live CSS'
-    href: '/live-css'
-  tableEditor:
-    title: 'Table editor'
-    href: '/table'
-  leaderboard:
-    title: 'Leaderboard'
-    href: '/leaderboard'
-  bindingsBench:
-    title: 'Bindings benchmark'
-    href: '/bindings-bench'
-  submit:
-    title: 'Submit form'
-    href: '/submit'
+  inlet:
+    title: 'inlet'
+    href: '/inlet'
   back:
     title: 'Back redirect'
     href: '/back'
+  submit:
+    title: 'Submit form'
+    href: '/submit'
   error:
     title: 'Error test'
     href: '/error'
 
 navOrder = [
   'home'
-  'liveCss'
-  'tableEditor'
-  'leaderboard'
-  'bindingsBench'
-  'submit'
+  'inlet'
   'back'
   'error'
 ]
