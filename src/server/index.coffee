@@ -1,6 +1,7 @@
 http = require 'http'
 express = require 'express'
 coffeeify = require 'coffeeify'
+gzippo = require 'gzippo'
 derby = require 'derby'
 #app = require '../app'
 inlet = require '../inlet'
@@ -19,7 +20,15 @@ store = derby.createStore
 store
   .use(require 'racer-browserchannel')
 
+ONE_YEAR = 1000 * 60 * 60 * 24 * 365
+mount = '/inlet'
+publicDir = require('path').join __dirname + '/../../public'
+
+#derby
+#  .set('staticMount', mount)
+
 store.on 'bundle', (browserify) ->
+  browserify.add publicDir + '/jquery-1.9.1.min.js'
   # Add support for directly requiring coffeescript in browserify bundles
   browserify.transform coffeeify
 
@@ -34,6 +43,8 @@ ipMiddleware = (req, res, next) ->
 
 expressApp
   .use(express.favicon())
+  
+  .use(mount, gzippo.staticGzip publicDir, maxAge: ONE_YEAR)
   # Gzip dynamically rendered content
   .use(express.compress())
   .use(inlet.scripts(store))
