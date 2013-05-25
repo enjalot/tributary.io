@@ -2,7 +2,8 @@ http = require 'http'
 express = require 'express'
 coffeeify = require 'coffeeify'
 derby = require 'derby'
-app = require '../app'
+#app = require '../app'
+inlet = require '../inlet'
 serverError = require './serverError'
 
 expressApp = express()
@@ -35,7 +36,7 @@ expressApp
   .use(express.favicon())
   # Gzip dynamically rendered content
   .use(express.compress())
-  .use(app.scripts(store))
+  .use(inlet.scripts(store))
 
   # Respond to requests for application script bundles
   # racer-browserchannel adds a middleware to the store for responding to
@@ -48,7 +49,7 @@ expressApp
   .use(ipMiddleware)
 
   # Creates an express middleware from the app's routes
-  .use(app.router())
+  .use(inlet.router())
   .use(expressApp.router)
   .use(serverError())
 

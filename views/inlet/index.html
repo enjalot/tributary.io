@@ -1,0 +1,26 @@
+<import: src=inlet>
+
+<Title:>
+  THIS IS TRIBUTARY: {{pageTitle($ns)}}
+
+<Header:>
+  <!-- $ns is the namespace supplied to the render function -->
+  <body class={{dash($ns)}}>
+  <!-- if a component is nonvoid, it must have a closing tag -->
+  <app:nav>
+    {{#each navItems($ns)}}
+      {{#if isCurrent}}
+        <b>{{title}}</b>
+      {{else}}
+        <a href={{href}}>{{title}}</a>
+      {{/}}
+      {{#unless isLast}} | {{/}}
+    {{/}}
+  </app:nav>
+
+<nav: nonvoid>
+  <nav>
+    <!-- nonvoid components support a special `content` attribute -->
+    {{@content}}
+    <hr>
+  </nav>

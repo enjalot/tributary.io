@@ -11,7 +11,7 @@
       {/}
       <td></td>
     </tr>
-    {#each .rows}
+    {#each .rows as :row}
       <tr class=row>
         <th x-bind="mousedown: tableEditor.rowDown">{.name}</th>
         {#each .cells}<td><input value={.text}></td>{/}
