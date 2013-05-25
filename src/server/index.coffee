@@ -6,12 +6,8 @@ derby = require 'derby'
 racerBrowserChannel = require 'racer-browserchannel'
 liveDbMongo = require 'livedb-mongo'
 
-ONE_YEAR = 1000 * 60 * 60 * 24 * 365
-mount = '/inlet'
-#derby
-#  .set('staticMount', mount)
 
-inlet = require '../inlet'
+app = require '../app'
 serverError = require './serverError'
 
 expressApp = express()
@@ -34,6 +30,11 @@ store = derby.createStore
   redis: redis
 
   
+ONE_YEAR = 1000 * 60 * 60 * 24 * 365
+mount = '/inlet'
+#derby
+#  .set('staticMount', mount)
+
 publicDir = require('path').join __dirname + '/../../public'
 
 
@@ -57,7 +58,7 @@ expressApp
   .use(mount, gzippo.staticGzip publicDir, maxAge: ONE_YEAR)
   # Gzip dynamically rendered content
   .use(express.compress())
-  .use(inlet.scripts(store))
+  .use(app.scripts(store))
 
   # Add browserchannel client-side scripts to model bundles created by store,
   # and return middleware for responding to remote client messages
@@ -69,7 +70,7 @@ expressApp
   .use(ipMiddleware)
 
   # Creates an express middleware from the app's routes
-  .use(inlet.router())
+  .use(app.router())
   .use(expressApp.router)
   .use(serverError())
 

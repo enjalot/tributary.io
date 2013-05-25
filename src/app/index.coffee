@@ -1,11 +1,11 @@
-app = require('derby').createApp module
+derby = require('derby')
+app = derby
+  .createApp module
+
+derby.use(require '../../ui')
 require './pages.coffee'
 
-require './home.coffee'
-require './live-css.coffee'
-require './table.coffee'
-require './leaderboard.coffee'
-require './bindings-bench.coffee'
+require './inlet.coffee'
 
 ['get', 'post', 'put', 'del'].forEach (method) ->
   app[method] app.pages.submit.href, (page, model, {body, query}) ->
