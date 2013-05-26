@@ -1,10 +1,10 @@
-viewUtil = require './util/view'
+viewUtil = require './util/view.coffee'
 
 config =
   ns: 'ui'
   filename: __filename
   scripts:
-    editor: require './editor'
+    editor: require './editor/index.coffee'
   styles: './styles'
 
 module.exports = ui = (derby, options) ->
