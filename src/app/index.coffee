@@ -1,5 +1,6 @@
 derby = require('derby')
 derby.use(require '../../ui/index.coffee')
+
 app = derby
   .createApp module
 

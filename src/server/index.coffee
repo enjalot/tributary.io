@@ -3,6 +3,7 @@ express = require 'express'
 coffeeify = require 'coffeeify'
 gzippo = require 'gzippo'
 derby = require 'derby'
+
 racerBrowserChannel = require 'racer-browserchannel'
 liveDbMongo = require 'livedb-mongo'
 
@@ -32,9 +33,6 @@ store = derby.createStore
   
 ONE_YEAR = 1000 * 60 * 60 * 24 * 365
 mount = '/inlet'
-#derby
-#  .set('staticMount', mount)
-
 publicDir = require('path').join __dirname + '/../../public'
 
 
@@ -55,7 +53,7 @@ ipMiddleware = (req, res, next) ->
 expressApp
   .use(express.favicon())
   
-  .use(mount, gzippo.staticGzip publicDir, maxAge: ONE_YEAR)
+  .use('/static', gzippo.staticGzip publicDir, maxAge: ONE_YEAR)
   # Gzip dynamically rendered content
   .use(express.compress())
   .use(app.scripts(store))
