@@ -33,10 +33,13 @@ body
   padding: 5px
   
 #icon-bar
-  font-size: 32px;
+  iconFontSize = 32px
+  font-size: iconFontSize
   line-height: 1.8em;
   text-align: center;
-  max-width: 48px
+  max-width: iconFontSize + 12
+  
+  border-right: 1px solid white
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   box-orient: vertical;
@@ -47,14 +50,34 @@ body
 
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
-  box-flex: 1;    
-  background-color: red
+  box-flex: 1;
+  background-color: #CCC
+  //margin-right: -20px
+  
+  #icon-list
+    list-style-type none
+    margin 0
+    padding 0
+    
+    li
+      padding: 0
+      border-bottom: 1px solid white
+      background-color: #CCC
+
+      &:hover
+        background-color: #999
+    
+@media (min-width: 1024px)    
+  #icon-bar
+    iconFontSize = 22px
+    font-size: iconFontSize
+    max-width: iconFontSize + 12
 
 .panel
   background: #CCC
   height: 100%;
   min-width: 420px;
-  width: 180px;
+  width: 34%;
   overflow-y: auto;
   position: relative
   
@@ -72,15 +95,13 @@ body
   
   #toolbar
     background-color white
-    border-color pink
     
   #code
     padding-top: 1em
     z-index: 0
-    border-color purple
+    //padding: 0.4em 0.8em
+    overflow-x: auto
   
-  section
-    border 1px solid
 
 .flexbox 
   display:-moz-box;

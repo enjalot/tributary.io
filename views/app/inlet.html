@@ -2,11 +2,29 @@
   <section id="container" class="flexbox">
       <app:display class="display flexbox">
       <section class="flexbox" id="icon-bar">
-        <i class="icon-code"></i>
-        <i class="icon-plus-squared"></i>
-        <i class="icon-resize-full"></i>
-        <i class="icon-tools"></i>
-        <i class="icon-cog"></i>
+        <ul id="icon-list">
+          <li>
+            <i class="icon-cog" title="settings"></i>
+          </li>
+          <li>
+            <i class="icon-plus-squared" title="+ squared"></i>
+          </li>
+          <li>
+            <i class="icon-code" title="code"></i>
+          </li>
+          <li>
+            <i class="icon-tools" title="tools"></i>
+          </li>
+          <li style="position: absolute; bottom: 0;">
+            <i class="icon-resize-full" title="fullscreen"></i>
+          </li>
+        </ul>
+        
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+          $("i").tipsy({gravity: 'e'});
+        })
+        </script>
         
         
       </section>
