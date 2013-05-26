@@ -57,12 +57,15 @@ body
   #icon-list
     list-style-type none
     margin 0
-    padding 0
+    padding 0    
     
     li
       padding: 0
       border-bottom: 1px solid white
       background-color: #CCC
+      
+      &:last-child
+        border-bottom: 0
 
       &:hover
         background-color: #999
@@ -97,7 +100,6 @@ body
     background-color white
     
   #code
-    padding-top: 1em
     z-index: 0
     //padding: 0.4em 0.8em
     overflow-x: auto
