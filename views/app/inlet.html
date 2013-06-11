@@ -3,20 +3,20 @@
       <app:display class="display flexbox">
       <section class="flexbox" id="icon-bar">
         <ul id="icon-list">
-          <li>
-            <i class="icon-folder" title="files"></i>
+          <li title="files">
+            <i class="icon-folder" ></i>
           </li>
-          <li>
-            <i class="icon-cog" title="settings"></i>
+          <li title="settings">
+            <i class="icon-cog"></i>
           </li>
-          <li>
-            <i class="icon-code" title="code"></i>
+          <li title="code">
+            <i class="icon-code"></i>
           </li>
-          <li>
-            <i class="icon-tools" title="tools"></i>
+          <li title="tools">
+            <i class="icon-tools"></i>
           </li>
-          <li style="position: absolute; bottom: 0;">
-            <i class="icon-resize-full" title="fullscreen"></i>
+          <li style="position: absolute; bottom: 0;" title="fullscreen">
+            <i class="icon-resize-full"></i>
           </li>
           
           <div id="icon-bar-content">
@@ -26,7 +26,7 @@
         
         <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
-          $("i").tipsy({gravity: 'e', delayIn: 640});
+          $("#icon-list li").tipsy({gravity: 'e', delayIn: 640});
         })
         </script>
         
