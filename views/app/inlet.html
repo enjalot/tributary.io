@@ -4,10 +4,10 @@
       <section class="flexbox" id="icon-bar">
         <ul id="icon-list">
           <li>
-            <i class="icon-cog" title="settings"></i>
+            <i class="icon-folder" title="files"></i>
           </li>
           <li>
-            <i class="icon-plus-squared" title="+ squared"></i>
+            <i class="icon-cog" title="settings"></i>
           </li>
           <li>
             <i class="icon-code" title="code"></i>
@@ -18,11 +18,15 @@
           <li style="position: absolute; bottom: 0;">
             <i class="icon-resize-full" title="fullscreen"></i>
           </li>
+          
+          <div id="icon-bar-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper, sapien eu accumsan viverra, est massa venenatis tortor, in porta lorem odio quis odio. Morbi porttitor enim vel nunc faucibus malesuada. Quisque sed dolor massa, eget pretium urna. Phasellus sit amet justo sit amet tellus fermentum ullamcorper.
+          </div>
         </ul>
         
         <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
-          $("i").tipsy({gravity: 'e'});
+          $("i").tipsy({gravity: 'e', delayIn: 640});
         })
         </script>
         
@@ -40,7 +44,7 @@
   <section class={{@class}} id="box-2">
     
     <section class="" id="toolbar">
-      Toolbar
+      Filename
     </section>
     
     <section class="" id="code">

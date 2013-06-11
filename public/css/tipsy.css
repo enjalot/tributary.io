@@ -1,4 +1,4 @@
-.tipsy { font-size: 0.9em; position: absolute; padding: 5px; z-index: 100000; }
+.tipsy { font-size: 0.9em; font-weight: bold; text-transform: capitalize; position: absolute; padding: 5px; z-index: 100000; }
   .tipsy-inner { background-color: #FFF; color: #000; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
 
   /* Rounded corners */

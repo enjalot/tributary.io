@@ -55,6 +55,7 @@ body
   //margin-right: -20px
   
   #icon-list
+    position: relative
     list-style-type none
     margin 0
     padding 0
@@ -63,9 +64,28 @@ body
       padding: 0
       border-bottom: 1px solid white
       background-color: #CCC
+      border-radius: 2px
+      
+      &:last-child
+        border-bottom: 0
 
       &:hover
         background-color: #999
+        
+    #icon-bar-content
+      padding: 0.4em
+      background-color: white
+      font-size: 0.7em
+      line-height: 1.2em
+      text-align: left
+      width: 200px;
+      height: 200px;
+      overflow: auto;
+
+      position: absolute
+      left: -200px
+      top: 0
+      
     
 @media (min-width: 1024px)    
   #icon-bar
@@ -97,7 +117,6 @@ body
     background-color white
     
   #code
-    padding-top: 1em
     z-index: 0
     //padding: 0.4em 0.8em
     overflow-x: auto
