@@ -67,6 +67,40 @@ app.ready (model) ->
   #rows = table.at 'rows'
   #cols = table.at 'cols'
 
+app.selectFiles = () ->
+  console.log "files"
+  control = @model.get '_page.control'
+  if control == 'files'
+    @model.set '_page.control', null
+  else
+    @model.set '_page.control', 'files'
+app.selectSettings = () ->
+  console.log "settings"
+  control = @model.get '_page.control'
+  if control == 'files'
+    @model.set '_page.control', null
+  else
+    @model.set '_page.control', 'settings'
+app.selectCode = () ->
+  console.log "code"
+  control = @model.get '_page.control'
+  if control == 'files'
+    @model.set '_page.control', null
+  else
+    @model.set '_page.control', 'code'
+app.selectTools = () ->
+  console.log "tools"
+  control = @model.get '_page.control'
+  if control == 'files'
+    @model.set '_page.control', null
+  else
+    @model.set '_page.control', 'tools'
+app.selectFullscreen = () ->
+  console.log "fullscreen"
+
+
+
+
 
 generateUUID = ->
   uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace /[xy]/g, (c) ->

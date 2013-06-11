@@ -3,24 +3,26 @@
       <app:display class="display flexbox">
       <section class="flexbox" id="icon-bar">
         <ul id="icon-list">
-          <li title="files">
+          <li title="files" x-bind="click: selectFiles">
             <i class="icon-folder" ></i>
           </li>
-          <li title="settings">
+          <li title="settings" x-bind="click: selectSettings">
             <i class="icon-cog"></i>
           </li>
-          <li title="code">
+          <li title="code" x-bind="click: selectCode">
             <i class="icon-code"></i>
           </li>
-          <li title="tools">
+          <li title="tools" x-bind="click: selectTools">
             <i class="icon-tools"></i>
           </li>
-          <li style="position: absolute; bottom: 0;" title="fullscreen">
+          <li style="position: absolute; bottom: 0;" title="fullscreen" x-bind="click: selectFullscreen">
             <i class="icon-resize-full"></i>
           </li>
           
           <div id="icon-bar-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper, sapien eu accumsan viverra, est massa venenatis tortor, in porta lorem odio quis odio. Morbi porttitor enim vel nunc faucibus malesuada. Quisque sed dolor massa, eget pretium urna. Phasellus sit amet justo sit amet tellus fermentum ullamcorper.
+            {#if _page.control}
+              <derby:view view={_page.control} optional>
+            {/}
           </div>
         </ul>
         
@@ -34,6 +36,18 @@
       </section>
       <app:panel class="panel">
   </section>
+
+<!-- START components for the icon-bar stuff -->
+<files:>
+  FILES BABY
+<settings:>
+  SETTINGS BABY
+<code:>
+  CODE BABY
+<tools:>
+  TOOLS BABY
+
+<!-- END components for the icon-bar stuff -->
 
 <display:>
   <section class={{@class}} id="box-1">
