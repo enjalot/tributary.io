@@ -18,6 +18,9 @@ inletPage = (page, model, params, next) ->
     return next err if err
     id = uuid.get()
     if gistId
+      inletQuery = model.query 'tributary.inlet', { $orderby: {createdAt: -1}, $limit: 5}
+      inletQuery.subscribe (err) ->
+        console.log "INLET", inletQuery.get()
       #TODO: look up uuid from gistId query
       #filtered = inlets.filter (d) -> d.gistId == gistId
       #console.log 'filtered', filtered.get()
@@ -30,10 +33,10 @@ inletPage = (page, model, params, next) ->
     console.log 'uuid', id
     uuid.set id
     inlet = inlets.at id
-
     inlet.setNull
       code: ""
       uuid: id
+      createdAt: +new Date
     if gistId
       inlet.set 'gistId', gistId
 
@@ -42,6 +45,18 @@ inletPage = (page, model, params, next) ->
 
     
 blankInletPage = (page, model, params, next) ->
+  inlets = model.at 'tributary.inlet'
+  uuid = model.at 'tributary.uuid'
+  id = generateUUID()
+
+  model.subscribe inlets, uuid, (err) ->
+    uuid.set id
+    inlet = inlets.at id
+    inlet.setNull
+      code: ""
+      uuid: id
+      createdAt: +new Date
+
   page.render 'inlet'
 
 app.get app.pages.inlet.gist, inletPage
