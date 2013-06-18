@@ -11,7 +11,9 @@
     "racer-browserchannel": "~0.1.0",
     "gzippo": ">=0.1.4",
     "coffeeify": "~0.4.0",
-    "coffee-script": "~1.6.2"
+    "coffee-script": "~1.6.2",
+
+    "codemirror":"~3.13.0"
   },
   "private": true,
   "devDependencies": {

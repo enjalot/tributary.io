@@ -7,8 +7,11 @@ app = derby
 require './pages.coffee'
 require './inlet.coffee'
 
+
+
 app.ready (model) ->
   window.model = model
+  require('CodeMirror')
 
 ['get', 'post', 'put', 'del'].forEach (method) ->
   app[method] app.pages.submit.href, (page, model, {body, query}) ->

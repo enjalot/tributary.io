@@ -30,14 +30,16 @@ store = derby.createStore
   db: liveDbMongo(mongoUri + '?auto_reconnect', safe: true)
   redis: redis
 
-  
+
 ONE_YEAR = 1000 * 60 * 60 * 24 * 365
 mount = '/inlet'
 publicDir = require('path').join __dirname + '/../../public'
 
 
 store.on 'bundle', (browserify) ->
-  browserify.add publicDir + '/jquery-1.9.1.min.js'
+  browserify.add publicDir + '/js/jquery-1.9.1.min.js'
+  GLOBAL.CodeMirror = {}
+  browserify.add publicDir + '/js/3rdparty.js'
   # Add support for directly requiring coffeescript in browserify bundles
   browserify.transform coffeeify
 
@@ -52,7 +54,7 @@ ipMiddleware = (req, res, next) ->
 
 expressApp
   .use(express.favicon())
-  
+
   .use('/static', gzippo.staticGzip publicDir, maxAge: ONE_YEAR)
   # Gzip dynamically rendered content
   .use(express.compress())

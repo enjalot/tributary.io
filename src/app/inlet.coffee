@@ -59,8 +59,20 @@ blankInletPage = (page, model, params, next) ->
 
   page.render 'inlet'
 
+inletEnter = ->
+  cm = CodeMirror document.getElementById('testcodemirror'), {
+    theme: 'lesser-dark'
+  }
+  cm.setValue """
+    var x = 5;
+    var s = "this is some code;"
+  """
+
 app.get app.pages.inlet.gist, inletPage
 app.get app.pages.inlet.root, blankInletPage
+
+app.enter app.pages.inlet.gist, inletEnter
+app.enter app.pages.inlet.root, inletEnter
 
 app.ready (model) ->
   #table = model.at 'sink.table'
