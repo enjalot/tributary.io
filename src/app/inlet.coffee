@@ -7,13 +7,13 @@ inletPage = (page, model, params, next) ->
   #TODO: validate this a little
   gistId = params.gistId
   model.set '_page.gistId', gistId
-  
+
   inletsQuery = model.query 'inlets',
     gistId: gistId
 
   inlets = model.at 'tributary.inlet'
   uuid = model.at 'tributary.uuid'
-    
+
   model.subscribe inlets, uuid, (err) ->
     return next err if err
     id = uuid.get()
@@ -43,7 +43,7 @@ inletPage = (page, model, params, next) ->
     console.log inlet.get()
     page.render 'inlet'
 
-    
+
 blankInletPage = (page, model, params, next) ->
   inlets = model.at 'tributary.inlet'
   uuid = model.at 'tributary.uuid'
@@ -77,21 +77,21 @@ app.selectFiles = () ->
 app.selectSettings = () ->
   console.log "settings"
   control = @model.get '_page.control'
-  if control == 'files'
+  if control == 'settings'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'settings'
 app.selectCode = () ->
   console.log "code"
   control = @model.get '_page.control'
-  if control == 'files'
+  if control == 'code'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'code'
 app.selectTools = () ->
   console.log "tools"
   control = @model.get '_page.control'
-  if control == 'files'
+  if control == 'tools'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'tools'

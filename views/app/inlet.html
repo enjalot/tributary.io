@@ -18,49 +18,40 @@
           <li style="position: absolute; bottom: 0;" title="fullscreen" x-bind="click: selectFullscreen">
             <i class="icon-resize-full"></i>
           </li>
-          
+
           <div id="icon-bar-content">
             {#if _page.control}
-              <derby:view view={_page.control} optional>
+              <derby:view view="panel:{{_page.control}}:panel" optional>
             {/}
           </div>
         </ul>
-        
+
         <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
           $("#icon-list li").tipsy({gravity: 'e', delayIn: 640});
         })
         </script>
-        
-        
+
+
       </section>
       <app:panel class="panel">
   </section>
 
 <!-- START components for the icon-bar stuff -->
-<files:>
-  FILES BABY
-<settings:>
-  SETTINGS BABY
-<code:>
-  CODE BABY
-<tools:>
-  TOOLS BABY
-
 <!-- END components for the icon-bar stuff -->
 
 <display:>
   <section class={{@class}} id="box-1">
-    
+
   </section>
 
 <panel:>
   <section class={{@class}} id="box-2">
-    
+
     <section class="" id="toolbar">
       Filename
     </section>
-    
+
     <section class="" id="code">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper, sapien eu accumsan viverra, est massa venenatis tortor, in porta lorem odio quis odio. Morbi porttitor enim vel nunc faucibus malesuada. Quisque sed dolor massa, eget pretium urna. Phasellus sit amet justo sit amet tellus fermentum ullamcorper. Etiam facilisis sem a orci dapibus at suscipit elit pretium. In pellentesque tempus interdum. Suspendisse potenti. Sed aliquet ante et nunc malesuada egestas. Nulla sed posuere nisl. Duis tortor arcu, viverra vel feugiat vel, condimentum nec metus. Morbi ut metus varius neque tempor viverra. Nam in tortor nibh, ut posuere tellus. Suspendisse facilisis, metus at luctus sollicitudin, nibh tortor sollicitudin tortor, eu tincidunt tortor ligula ac lectus. Sed purus nulla, interdum a volutpat nec, ornare vitae justo.
 
@@ -72,5 +63,5 @@
 
       Sed mollis, nulla quis sollicitudin ornare, risus nibh scelerisque ipsum, eget aliquet dolor nisl ac lacus. Quisque ac erat odio. Mauris eget elit diam. Quisque sed tortor vitae mi sodales tristique sed non odio. Donec in augue metus. Integer nisi urna, pretium ac gravida eu, commodo at metus. Nulla volutpat dignissim euismod. Vivamus orci ante, dapibus ut bibendum eget, adipiscing et urna. Praesent a purus felis. Ut id ante sed massa pulvinar fermentum. Praesent eros ligula, cursus in cursus consectetur, scelerisque vitae ante. Vivamus varius lorem a libero tempus vel gravida turpis dignissim. Morbi quis libero ligula, venenatis sagittis mi. Proin laoreet tortor sed dolor eleifend eu consectetur est lobortis. Aenean vitae sem vitae nisi lobortis suscipit commodo sit amet lorem. Donec et nulla id leo pretium rutrum.
     </section>
-    
+
   </section>
