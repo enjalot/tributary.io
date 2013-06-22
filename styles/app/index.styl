@@ -1,10 +1,13 @@
 @import "nib/vendor";
 @import "../mixins"
 
+sansSerifFonts = "Helvetica Neue", Helvetica, Arial, sans-serif;
+serifFonts = Georgia, serif
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 
 body, html, #container>section, #container { height: 100%; }
+
 body
   height: 100%;
   width 100%
@@ -33,7 +36,9 @@ body
   padding: 5px
   
 #icon-bar
-  iconFontSize = 32px
+  iconFontSize = 26px
+  iconBarContentWidth = 200px
+  
   font-size: iconFontSize
   line-height: 1.8em;
   text-align: center;
@@ -60,6 +65,7 @@ body
     margin 0
     padding 0
     height 100%
+    z-index: 5
     
     li
       padding: 0
@@ -74,33 +80,77 @@ body
         background-color: #999
         
     #icon-bar-content
-      padding: 0.4em
-      background-color: white
+      
+      font-size: 1rem
+      padding: 0.4em 0
+      background-color: rgba(250,250,250,0.75)
       font-size: 0.7em
       line-height: 1.2em
       text-align: left
-      width: 200px;
-      height: 200px;
+      width: iconBarContentWidth
+      max-height: 600px;
       overflow: auto;
 
       position: absolute
-      left: -200px
       top: 0
+      z-index: 1
+      left: iconBarContentWidth
+      opacity: 0.9
+
+      &.active {
+        left: - iconBarContentWidth
+      }
+      &:hover { 
+        opacity: 1; 
       
+      }
+      
+      h1,h2,h3,h4,h5,h6 {
+        font-family: sansSerifFonts;
+      }
+      
+      h3
+        padding 0.2em 0.5em
+        margin 0.25em 0
+      ul
+        margin 0
+        padding 0
+        
+      li
+        border-radius 2px
+        list-style-type none
+        padding 0.2em 0.5em
+        margin 1px 2px
+        cursor default
+        
+      #file-list
+        margin 0
+        padding 0
+
+      
+      #library-list
+        margin 0
+        padding 0
+          
+      
+        
+toolbarHeight = 0//3em      
     
 @media (min-width: 1024px)    
   #icon-bar
-    iconFontSize = 22px
+    iconFontSize = 20px
     font-size: iconFontSize
     max-width: iconFontSize + 12
 
 .panel
-  background: #CCC
+  z-index: 5
+  background: white
   height: 100%;
   min-width: 420px;
   width: 34%;
-  overflow-y: auto;
+  //overflow-y: auto;
   position: relative
+  padding-top toolbarHeight
   
   -moz-box-ordinal-group: 3;
   -webkit-box-ordinal-group: 3;
@@ -115,12 +165,29 @@ body
   flex-flow: column;
   
   #toolbar
-    background-color white
+    display none
+    background-color: white
+    position absolute
+    top 0
+    z-index 5
+    height toolbarHeight
+    padding 0.8em 
+    width 100%
+    border-bottom 1px solid #CCC
+
     
   #code
+    //margin-top 2em
     z-index: 0
     //padding: 0.4em 0.8em
     overflow-x: auto
+    height 100%
+
+    
+    #codemirror
+      height 100%
+      .CodeMirror
+        height 100%
   
 
 .flexbox 
@@ -136,3 +203,7 @@ body
  
  h1 
    width: auto;
+   
+   
+.tipsy
+  font-family: sansSerifFonts

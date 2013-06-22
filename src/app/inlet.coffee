@@ -60,7 +60,7 @@ blankInletPage = (page, model, params, next) ->
   page.render 'inlet'
 
 inletEnter = ->
-  cm = CodeMirror document.getElementById('testcodemirror'), {
+  cm = CodeMirror document.getElementById('codemirror'), {
     theme: 'lesser-dark'
   }
   cm.setValue """
