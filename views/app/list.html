@@ -1,0 +1,7 @@
+<Body:>
+  {#each _page.inlets as :inlet}
+  <div>
+    <!-- TODO: use users[:inlet.userId] for userName -->
+    <a href="{url('inlet.inlet', 'userName', 'enjafox', 'inlet', :inlet.title)}">{:inlet.name}</a><br>
+  </div>
+  {/}

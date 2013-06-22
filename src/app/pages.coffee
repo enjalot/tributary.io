@@ -19,6 +19,8 @@ app.pages =
     #user: '/i/:userName'          #user page
     inlet: '/i/:userName/:inlet'  #an existing inlet
     #gist: '/inlet/:gistId'        #backwards compatible
+  list:
+    href: '/list'
 
 navOrder = [
   'home'
@@ -56,7 +58,7 @@ app.pages.viewFn = (name, args...) ->
       params[key] = arg
     else
       key = arg
-  return routes.url name, params
+  return app.pages.url name, params
 
 app.view.fn 'url', app.pages.viewFn
 

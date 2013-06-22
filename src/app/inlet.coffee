@@ -10,14 +10,13 @@ inletPage = (page, model, params, next) ->
   userId = '1234'
   inletTitle = params.inlet
   inletQuery = model.query 'inlets', {userId: userId, title: inletTitle}
-  console.log "SUP", userId, inletTitle
   model.subscribe inletQuery, (err) ->
     # TODO: proper 404? redirect to blank for now
     # TODO: handle error
     return console.log("ERROR", err) if err
     return app.history.push(app.pages.url('inlet.new')) if not (inlet = inletQuery.get()[0])
     console.log "INLET", inlet
-    model.set '_page.inlet', inlet
+    model.ref "_page.inlet", "inlets.#{inlet.id}"
     model.set '_page.inletTitle', inlet.name
 
   page.render 'inlet'
@@ -127,6 +126,7 @@ sanitizeInletTitle = (text) ->
 
 checkTitle = (model, cb) ->
   text = model.get '_page.inletTitle'
+  return cb(null, null) if not text
   text = sanitizeInletTitle(text)
   userId = model.get '_session.userId'
   titleQuery = model.query 'inlets', { userId: userId, title: text }
@@ -187,6 +187,7 @@ app.fn 'selectFullscreen', ->
 
 #Saving logic
 app.fn 'save', ->
+  model = @model
   return if !model.get('_page.titleValidation') == 'valid'
   console.log "save"
   #save the version number (get op # from share)
@@ -211,6 +212,13 @@ app.fn 'save', ->
 app.fn 'fork', ->
   console.log "fork"
   #add _page.inlet to collection under new name + id
+
+app.fn 'new', ->
+  console.log "new"
+  #add _page.inlet to collection under new name + id
+  resetLocalStorage(@model)
+  app.history.push app.pages.url 'inlet.new'
+
 
 app.fn 'exportToGist', ->
   console.log "export to gist"

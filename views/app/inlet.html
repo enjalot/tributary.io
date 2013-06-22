@@ -54,7 +54,9 @@
   set the inlet name: <input value={_page.inletTitle} class="{_page.titleValidation}"></input><br>
   save: <button x-bind="click: save" disabled="{equal(_page.titleValidation, 'invalid')}">Save</button><br>
   fork: <button x-bind="click: fork">Fork</button><br>
+  new: <button x-bind="click: new">New</button><br>
   save to gist: <button x-bind="click: exportToGist">Export</button><br>
+ <a href="{url('list.href')}">LIST OF YOUR INLETS</a><br>
   </div>
 
    <pre>{_page.inlet.files.inlet.code}</pre>
