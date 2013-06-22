@@ -76,10 +76,12 @@ app.enter app.pages.inlet.inlet, inletEnter
 #app.get app.pages.inlet.gist, gistPage
 #app.enter app.pages.inlet.gist, gistEnter
 
+app.on 'model', (model) ->
+  model.setNull '_page.controls', [
+    'files', 'settings', 'tools'
+  ]
 app.ready (model) ->
-  #table = model.at 'sink.table'
-  #rows = table.at 'rows'
-  #cols = table.at 'cols'
+  #pass
 
 app.fn 'selectFiles',  ->
   console.log "files"

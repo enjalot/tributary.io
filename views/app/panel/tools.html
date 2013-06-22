@@ -1,15 +1,17 @@
 <panel:>
-  <h3>Data Sources</h3>
-  <ul id="datasource-list">
-      <li>+ Add datasource</li>
-  </ul>
-  
-  <h3>Libraries</h3>
-  <ul id="library-list">
-    <li>+ Add library</li>
-    <li class="active-library">D3 <span class="library-url">github.com</span></li>
-    <li class="disabled-library">Three.js <span class="library-url">github.com</span></li>
-  </ul>
-  
-  <h3>Time Controls</h3>
-  <button>Play</button> <button>Loop</button> <button>Restart</button>
+  <div class="{@class} {#if equal(_page.control, 'tools')}selected{/}">
+    <h3>Data Sources</h3>
+    <ul id="datasource-list">
+        <li>+ Add datasource</li>
+    </ul>
+
+    <h3>Libraries</h3>
+    <ul id="library-list">
+      <li>+ Add library</li>
+      <li class="active-library">D3 <span class="library-url">github.com</span></li>
+      <li class="disabled-library">Three.js <span class="library-url">github.com</span></li>
+    </ul>
+
+    <h3>Time Controls</h3>
+    <button>Play</button> <button>Loop</button> <button>Restart</button>
+  </div>

@@ -20,10 +20,14 @@
           </li>
 
           <div id="icon-bar-content" class="active">
-            {#if _page.control}
-              <derby:view view="panel:{{_page.control}}:panel" optional>
+
+            {#each _page.controls as :control}
+            <div>
+            <derby:view view="panel:{{:control}}:panel" optional>
+            </div>
             {/}
           </div>
+
 
         </ul>
 
