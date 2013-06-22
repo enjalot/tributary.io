@@ -42,7 +42,7 @@ blankInletEnter = (model) ->
 inletEnter = (model) ->
   # Initialize client side code (tributary + codemirror)
   # TODO: setup CM for each file
-  cm = CodeMirror document.getElementById('testcodemirror'), {
+  cm = CodeMirror document.getElementById('codemirror'), {
     theme: 'lesser-dark'
   }
   path = '_page.inlet.files.inlet.code'
