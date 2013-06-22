@@ -18,7 +18,7 @@
           <li style="position: absolute; bottom: 0;" title="fullscreen" x-bind="click: selectFullscreen">
             <i class="icon-resize-full"></i>
           </li>
-          
+
           <div id="icon-bar-content" class="active">
             {#if _page.control}
               <derby:view view="panel:{{_page.control}}:panel" optional>
@@ -26,7 +26,7 @@
           </div>
 
         </ul>
-        
+
 
 
         <script type="text/javascript" charset="utf-8">
@@ -40,11 +40,17 @@
       <app:panel class="panel">
   </section>
 
-<!-- START components for the icon-bar stuff -->
-<!-- END components for the icon-bar stuff -->
 
 <display:>
   <section class={{@class}} id="box-1">
+
+  <div>
+  <!-- these can be moved to where they should be -->
+  set the inlet name: <input value={_page.inletTitle} class="{_page.titleValidation}"></input><br>
+  save: <button x-bind="click: save">Save</button><br>
+  fork: <button x-bind="click: fork">Fork</button><br>
+  save to gist: <button x-bind="click: exportToGist">Export</button><br>
+  </div>
 
    <pre>{_page.inlet.files.inlet.code}</pre>
   </section>

@@ -42,6 +42,7 @@ blankInletEnter = (model) ->
 inletEnter = (model) ->
   # Initialize client side code (tributary + codemirror)
   # TODO: setup CM for each file
+  # TODO: check hash params for signal not to auto-execute
   cm = CodeMirror document.getElementById('codemirror'), {
     theme: 'lesser-dark'
   }
@@ -110,3 +111,19 @@ app.fn 'selectTools', ->
     @model.set '_page.control', 'tools'
 app.fn 'selectFullscreen', ->
   console.log "fullscreen"
+
+sanitizeInletName = (text) ->
+  text
+
+#Saving logic
+app.fn 'save', ->
+  console.log "save"
+  #save the version number (get op # from share)
+  #add to collection if inlet isn't already in the collection
+
+app.fn 'fork', ->
+  console.log "fork"
+  #add _page.inlet to collection under new name + id
+
+app.fn 'exportToGist', ->
+  console.log "export to gist"
