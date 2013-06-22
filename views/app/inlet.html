@@ -23,7 +23,7 @@
 
             {#each _page.controls as :control}
             <div>
-            <derby:view view="panel:{{:control}}:panel" optional>
+              <derby:view view="panel:{{:control}}:panel" optional>
             </div>
             {/}
           </div>
@@ -49,9 +49,10 @@
   <section class={{@class}} id="box-1">
 
   <div>
+  {#if _page.loading}THE PAGE IS LOADING, NOT SURE WHY SLOW{/}
   <!-- these can be moved to where they should be -->
   set the inlet name: <input value={_page.inletTitle} class="{_page.titleValidation}"></input><br>
-  save: <button x-bind="click: save">Save</button><br>
+  save: <button x-bind="click: save" disabled="{equal(_page.titleValidation, 'invalid')}">Save</button><br>
   fork: <button x-bind="click: fork">Fork</button><br>
   save to gist: <button x-bind="click: exportToGist">Export</button><br>
   </div>

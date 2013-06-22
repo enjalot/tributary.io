@@ -56,6 +56,7 @@ createUserId = (req, res, next) ->
   model = req.getModel()
   #TODO: setup real auth
   model.set '_session.userId', '1234'
+  model.set '_session.userName', 'enjafox'
   #model.set '_session.userId', req.session.auth?.userId
   next()
 

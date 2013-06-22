@@ -4,6 +4,22 @@ app = require './index.coffee'
 inletPage = (page, model, params, next) ->
   console.log("params", params)
 
+  userName = params.userName
+  # TODO: lookup id from username
+  # getUserFromName(model, userName, (err, user) ->
+  userId = '1234'
+  inletTitle = params.inlet
+  inletQuery = model.query 'inlets', {userId: userId, title: inletTitle}
+  console.log "SUP", userId, inletTitle
+  model.subscribe inletQuery, (err) ->
+    # TODO: proper 404? redirect to blank for now
+    # TODO: handle error
+    return console.log("ERROR", err) if err
+    return app.history.push(app.pages.url('inlet.new')) if not (inlet = inletQuery.get()[0])
+    console.log "INLET", inlet
+    model.set '_page.inlet', inlet
+    model.set '_page.inletTitle', inlet.name
+
   page.render 'inlet'
 
 
@@ -21,6 +37,7 @@ blankInletPage = (page, model, params, next) ->
     uuid: model.id()
     createdAt: +new Date
     userId: model.get '_session.userId'
+  model.setNull '_page.inletTitle', 'new inlet'
 
   page.render 'inlet'
 
@@ -38,6 +55,22 @@ blankInletEnter = (model) ->
     return if passed?.localStorage
     localStorage.setItem 'blankInlet', JSON.stringify(model.get '_page.inlet')
   inletEnter(model)
+
+resetLocalStorage = (model) ->
+  inlet =
+   files:
+      inlet:
+        type: 'javascript'
+        ext: 'js'
+        code: """
+  var x = 6;
+  var s = "this is some code;"
+        """
+    uuid: model.id()
+    createdAt: +new Date
+    userId: model.get '_session.userId'
+
+  localStorage.setItem 'blankInlet', JSON.stringify(inlet)
 
 inletEnter = (model) ->
   # Initialize client side code (tributary + codemirror)
@@ -76,12 +109,50 @@ app.enter app.pages.inlet.inlet, inletEnter
 #app.get app.pages.inlet.gist, gistPage
 #app.enter app.pages.inlet.gist, gistEnter
 
+
+sanitizeUserName = (text) -> text
+checkUserName = (model, cb) ->
+  # TODO: make usernames unique, check similar to inlet titles
+
+getUserFromName = (model, userName, cb) ->
+  userQuery = model.query 'users', { name: userName }
+  model.fetch userQuery, (err) ->
+    return cb(err) if err
+    user = model.query.get()[0]
+    cb(null, user)
+
+sanitizeInletTitle = (text) ->
+  text
+    .replace(/\W/g,'-')
+
+checkTitle = (model, cb) ->
+  text = model.get '_page.inletTitle'
+  text = sanitizeInletTitle(text)
+  userId = model.get '_session.userId'
+  titleQuery = model.query 'inlets', { userId: userId, title: text }
+  model.fetch titleQuery, (err) ->
+    return cb(err) if err
+    if not titleQuery.get().length
+      model.set '_page.titleValidation', 'valid'
+      valid = true
+    else
+      model.set '_page.titleValidation', 'invalid'
+      valid = false
+    model.unfetch titleQuery, (err) ->
+      return cb(err) if err
+      cb(null, valid)
+
 app.on 'model', (model) ->
+  model.set '_page.loading', true
   model.setNull '_page.controls', [
     'files', 'settings', 'tools'
   ]
+
 app.ready (model) ->
-  #pass
+  model.set '_page.loading', false
+  checkTitle(model, ->)
+  model.on 'change', '_page.inletTitle', ->
+    checkTitle(model, ->)
 
 app.fn 'selectFiles',  ->
   console.log "files"
@@ -114,14 +185,28 @@ app.fn 'selectTools', ->
 app.fn 'selectFullscreen', ->
   console.log "fullscreen"
 
-sanitizeInletName = (text) ->
-  text
-
 #Saving logic
 app.fn 'save', ->
+  return if !model.get('_page.titleValidation') == 'valid'
   console.log "save"
   #save the version number (get op # from share)
   #add to collection if inlet isn't already in the collection
+  inlet = model.get '_page.inlet'
+  title = model.get '_page.inletTitle'
+  inlet.title = sanitizeInletTitle(title)
+  inlet.name = title
+  path = "inlets.#{inlet.id}"
+  model.fetch path, (err) ->
+    if not model.get path
+      model.add 'inlets', inlet, (err) ->
+        # TODO: handle error
+        return err if err
+        url = app.pages.url 'inlet.inlet', { userName: model.get('_session.userName'), inlet: inlet.title}
+        resetLocalStorage(model)
+        model.unfetch path, (err) ->
+          # TODO: handle error
+          return err if err
+          app.history.push url
 
 app.fn 'fork', ->
   console.log "fork"
