@@ -3,10 +3,10 @@ express = require 'express'
 coffeeify = require 'coffeeify'
 gzippo = require 'gzippo'
 derby = require 'derby'
-
+#livedb stuff
 racerBrowserChannel = require 'racer-browserchannel'
 liveDbMongo = require 'livedb-mongo'
-
+createLoggerStream = require './logger'
 
 app = require '../app'
 serverError = require './serverError'
@@ -15,6 +15,11 @@ expressApp = express()
 server = http.createServer(expressApp)
 
 module.exports = server
+
+ONE_YEAR = 1000 * 60 * 60 * 24 * 365
+mount = '/inlet'
+publicDir = require('path').join __dirname + '/../../public'
+
 
 # The store creates models and syncs data
 if process.env.OPENREDIS_URL
@@ -26,15 +31,18 @@ else
 redis.select 4
 
 mongoUri = process.env.MONGOHQ_URL || 'mongodb://localhost:27017/tributary-io'
+
+loggerStream = createLoggerStream()
+loggerStream.pipe(process.stdout)
 store = derby.createStore
   db: liveDbMongo(mongoUri + '?auto_reconnect', safe: true)
   redis: redis
+  logger: loggerStream
 
-
-ONE_YEAR = 1000 * 60 * 60 * 24 * 365
-mount = '/inlet'
-publicDir = require('path').join __dirname + '/../../public'
-
+store.shareClient.use 'connect', (shareRequest, next) ->
+  {agent, stream, req} = shareRequest
+  agent.connectSession = req.session if req
+  next()
 
 store.on 'bundle', (browserify) ->
   browserify.add publicDir + '/js/jquery-1.9.1.min.js'
@@ -42,6 +50,14 @@ store.on 'bundle', (browserify) ->
   browserify.add publicDir + '/js/3rdparty.js'
   # Add support for directly requiring coffeescript in browserify bundles
   browserify.transform coffeeify
+
+#Middlewares
+createUserId = (req, res, next) ->
+  model = req.getModel()
+  #TODO: setup real auth
+  model.set '_session.userId', '1234'
+  #model.set '_session.userId', req.session.auth?.userId
+  next()
 
 ipMiddleware = (req, res, next) ->
   forwarded = req.header 'x-forwarded-for'
@@ -66,8 +82,9 @@ expressApp
   # Adds req.getModel method
   .use(store.modelMiddleware())
 
-
   .use(ipMiddleware)
+
+  .use(createUserId)
 
   # Creates an express middleware from the app's routes
   .use(app.router())

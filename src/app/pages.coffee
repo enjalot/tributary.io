@@ -6,23 +6,14 @@ app.pages =
     href: '/'
   inlet:
     title: 'inlet'
-    root: '/inlet'
-    gist: '/inlet/:gistId'
-  back:
-    title: 'Back redirect'
-    href: '/back'
-  submit:
-    title: 'Submit form'
-    href: '/submit'
-  error:
-    title: 'Error test'
-    href: '/error'
+    new: '/i'                     #create a new inlet
+    #user: '/i/:username'          #user page
+    inlet: '/i/:username/:inlet'  #an existing inlet
+    #gist: '/inlet/:gistId'        #backwards compatible
 
 navOrder = [
   'home'
   'inlet'
-  'back'
-  'error'
 ]
 
 app.view.fn 'navItems', (current) ->

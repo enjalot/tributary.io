@@ -12,6 +12,8 @@
     "gzippo": ">=0.1.4",
     "coffeeify": "~0.4.0",
     "coffee-script": "~1.6.2",
+    "moment": "2.0.0",
+    "ansi-color":"*",
 
     "codemirror":"~3.13.0"
   },

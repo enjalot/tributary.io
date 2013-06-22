@@ -4,122 +4,109 @@ app = require './index.coffee'
 inletPage = (page, model, params, next) ->
   console.log("params", params)
 
-  #TODO: validate this a little
-  gistId = params.gistId
-  model.set '_page.gistId', gistId
-
-  inletsQuery = model.query 'inlets',
-    gistId: gistId
-
-  inlets = model.at 'tributary.inlet'
-  uuid = model.at 'tributary.uuid'
-
-  model.subscribe inlets, uuid, (err) ->
-    return next err if err
-    id = uuid.get()
-    if gistId
-      inletQuery = model.query 'tributary.inlet', { $orderby: {createdAt: -1}, $limit: 5}
-      inletQuery.subscribe (err) ->
-        console.log "INLET", inletQuery.get()
-      #TODO: look up uuid from gistId query
-      #filtered = inlets.filter (d) -> d.gistId == gistId
-      #console.log 'filtered', filtered.get()
-      if not id
-        id = gistId
-    else
-      if not id
-        id = generateUUID()
-
-    console.log 'uuid', id
-    uuid.set id
-    inlet = inlets.at id
-    inlet.setNull
-      code: ""
-      uuid: id
-      createdAt: +new Date
-    if gistId
-      inlet.set 'gistId', gistId
-
-    console.log inlet.get()
-    page.render 'inlet'
+  page.render 'inlet'
 
 
 blankInletPage = (page, model, params, next) ->
-  inlets = model.at 'tributary.inlet'
-  uuid = model.at 'tributary.uuid'
-  id = generateUUID()
-
-  model.subscribe inlets, uuid, (err) ->
-    uuid.set id
-    inlet = inlets.at id
-    inlet.setNull
-      code: ""
-      uuid: id
-      createdAt: +new Date
+  #TODO: work out schema more completely
+  model.setNull '_page.inlet',
+    files:
+      inlet:
+        type: 'javascript'
+        ext: 'js'
+        code: """
+  var x = 6;
+  var s = "this is some code;"
+        """
+    uuid: model.id()
+    createdAt: +new Date
+    userId: model.get '_session.userId'
 
   page.render 'inlet'
 
-inletEnter = ->
+blankInletEnter = (model) ->
+  # Save in localStorage for inlet that hasn't been saved yet
+  # TODO: creating a new inlet or saving should clear localStorage
+  # so next new one will be blank again
+  inlet = localStorage.getItem 'blankInlet'
+  if inlet
+    try
+      model.pass({localStorage:true}).set '_page.inlet', JSON.parse(inlet)
+    catch e
+      #pass
+  model.on 'change', '_page.inlet.files.*.code', (fileName, newCode, oldCode, passed) ->
+    return if passed?.localStorage
+    localStorage.setItem 'blankInlet', JSON.stringify(model.get '_page.inlet')
+  inletEnter(model)
+
+inletEnter = (model) ->
+  # Initialize client side code (tributary + codemirror)
+  # TODO: setup CM for each file
   cm = CodeMirror document.getElementById('testcodemirror'), {
     theme: 'lesser-dark'
   }
-  cm.setValue """
-    var x = 5;
-    var s = "this is some code;"
-  """
+  path = '_page.inlet.files.inlet.code'
+  initCode = model.get path
+  # TODO: setup actual tributary library
+  cm.setValue initCode
 
-app.get app.pages.inlet.gist, inletPage
-app.get app.pages.inlet.root, blankInletPage
+  cm.on 'change', (_, op) ->
+    # update code in model when editor's code changes
+    start = cm.indexFromPos(op.from)
+    if rlen = op.removed[0].length
+      model.pass({fileName: 'inlet'}).stringRemove(path, start, rlen)
+    if op.text[0].length
+      model.pass({fileName: 'inlet'}).stringInsert(path, start, op.text[0])
 
-app.enter app.pages.inlet.gist, inletEnter
-app.enter app.pages.inlet.root, inletEnter
+  model.on 'change', '_page.inlet.files.*.code', (fileName, newCode, oldCode, passed) ->
+    #we don't want to update CM if it was CM that updated us
+    return if passed?.fileName == fileName
+    #TODO: use filename to look up appropriate cm instance
+    cm.setValue newCode
+
+# Handle the routes
+app.get app.pages.inlet.new, blankInletPage
+app.enter app.pages.inlet.new, blankInletEnter
+
+app.get app.pages.inlet.inlet, inletPage
+app.enter app.pages.inlet.inlet, inletEnter
+
+# Backwards compatibility
+#app.get app.pages.inlet.gist, gistPage
+#app.enter app.pages.inlet.gist, gistEnter
 
 app.ready (model) ->
   #table = model.at 'sink.table'
   #rows = table.at 'rows'
   #cols = table.at 'cols'
 
-app.selectFiles = () ->
+app.fn 'selectFiles',  ->
   console.log "files"
   control = @model.get '_page.control'
   if control == 'files'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'files'
-app.selectSettings = () ->
+app.fn 'selectSettings', ->
   console.log "settings"
   control = @model.get '_page.control'
   if control == 'settings'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'settings'
-app.selectCode = () ->
+app.fn 'selectCode', ->
   console.log "code"
   control = @model.get '_page.control'
   if control == 'code'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'code'
-app.selectTools = () ->
+app.fn 'selectTools', ->
   console.log "tools"
   control = @model.get '_page.control'
   if control == 'tools'
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'tools'
-app.selectFullscreen = () ->
+app.fn 'selectFullscreen', ->
   console.log "fullscreen"
-
-
-
-
-
-generateUUID = ->
-  uid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace /[xy]/g, (c) ->
-    r = Math.random()*16|0
-    if c == 'x'
-      v = r
-    else
-      v = (r&0x3|0x8)
-    return v.toString(16)
-  return uid
