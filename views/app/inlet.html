@@ -6,7 +6,7 @@
           <li title="files" x-bind="click: selectFiles">
             <i class="icon-folder" ></i>
           </li>
-          <li title="settings" x-bind="click: selectSettings">
+          <li title="settings" x-bind="click: selectSettings" class="active-icon">
             <i class="icon-cog"></i>
           </li>
           <li title="code" x-bind="click: selectCode" style="display: none;">
@@ -35,7 +35,7 @@
 
         <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
-          $("#icon-list li").tipsy({gravity: 'e', delayIn: 640});
+          $("#icon-list li").tipsy({gravity: 'e', delayIn: 540, fade: 'true'});
         })
         </script>
 
@@ -65,7 +65,7 @@
 <panel:>
   <section class={{@class}} id="box-2">
 
-    <section class="" id="toolbar">
+    <section class="" id="codetoolbar">
       Filename
     </section>
 
