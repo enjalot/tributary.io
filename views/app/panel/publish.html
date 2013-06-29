@@ -1,3 +1,12 @@
 <panel:>
-  <h2>SAVE BABY</h2>
-
+  <div class="{@class} {#if equal(_page.control, 'publish')}selected{/}" style="text-align: left;">
+    <h2>Save &amp; Export</h2>
+    <div id="save-and-export">
+      set the inlet name: <input value={_page.inletTitle} class="{_page.titleValidation}"></input><br>
+      <button x-bind="click: save" disabled="{equal(_page.titleValidation, 'invalid')}">Save</button><br>
+      <button x-bind="click: fork">Fork this inlet</button><br>
+      <button x-bind="click: new">New inlet</button><br>
+      <button x-bind="click: exportToGist">Export to gist</button><br>
+      <a href="{url('list.href')}">LIST OF YOUR INLETS</a><br>
+    </div>    
+  </div>
