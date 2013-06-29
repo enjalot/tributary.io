@@ -170,6 +170,7 @@ body
       #file-list
         margin 0
         padding 0
+
         
         bgLighten = 0.25
         jsColor = #d8ce88
@@ -187,6 +188,7 @@ body
           background-color: rgba(defaultColor, bgLighten)
           
         li
+          text-align right
           font-weight bold
           background-color: rgba(defaultColor, bgLighten)
           
@@ -229,6 +231,12 @@ body
           
       #time-control-settings
         text-align center
+        
+      #save-and-export
+        opacity 1 !important
+        height auto
+        padding: 0.5em
+        line-height: 1.7em
           
       
 /* Code panel styles */  
@@ -237,7 +245,7 @@ body
   width: 0px !important
   transition: width 0.8s ease-out
         
-codeToolbarHeight = 0//3em      
+codeToolbarHeight = 2em      
     
 @media (min-width: 1024px)    
   #icon-bar
@@ -268,15 +276,30 @@ codeToolbarHeight = 0//3em
   flex-flow: column;
   
   #codetoolbar
-    display none
+    font-family: sansSerifFonts
+    font-weight 300
+    //display none
     background-color: white
     position absolute
     top 0
     z-index 5
     height codeToolbarHeight
-    padding 0.8em 
+    padding 0.4em 
     width 100%
-    border-bottom 1px solid #CCC
+    border-bottom 5px solid #CCC
+    
+    
+
+    
+    &.code-running
+      border-bottom: 1px solid #bbe0a3       
+    
+    &:focus
+      outline: 0 solid transparent
+      
+    #filename
+      outline: 0 solid transparent
+      min-width: 1em    
 
     
   #code
