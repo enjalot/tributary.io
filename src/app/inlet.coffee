@@ -145,7 +145,7 @@ checkTitle = (model, cb) ->
 app.on 'model', (model) ->
   model.set '_page.loading', true
   model.setNull '_page.controls', [
-    'files', 'settings', 'tools', 'save'
+    'files', 'settings', 'tools', 'publish'
   ]
 
 app.ready (model) ->
