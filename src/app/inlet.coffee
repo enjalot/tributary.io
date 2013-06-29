@@ -145,7 +145,7 @@ checkTitle = (model, cb) ->
 app.on 'model', (model) ->
   model.set '_page.loading', true
   model.setNull '_page.controls', [
-    'files', 'settings', 'tools'
+    'files', 'settings', 'tools', 'save'
   ]
 
 app.ready (model) ->
@@ -161,6 +161,7 @@ app.fn 'selectFiles',  ->
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'files'
+    
 app.fn 'selectSettings', ->
   console.log "settings"
   control = @model.get '_page.control'
@@ -168,6 +169,7 @@ app.fn 'selectSettings', ->
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'settings'
+
 app.fn 'selectCode', ->
   console.log "code"
   control = @model.get '_page.control'
@@ -175,6 +177,7 @@ app.fn 'selectCode', ->
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'code'
+
 app.fn 'selectTools', ->
   console.log "tools"
   control = @model.get '_page.control'
@@ -182,8 +185,18 @@ app.fn 'selectTools', ->
     @model.set '_page.control', null
   else
     @model.set '_page.control', 'tools'
+    
+app.fn 'selectPublish',  ->
+  console.log "publish"
+  control = @model.get '_page.control'
+  if control == 'publish'
+    @model.set '_page.control', null
+  else
+    @model.set '_page.control', 'publish'
+        
 app.fn 'selectFullscreen', ->
   console.log "fullscreen"
+  $("#box-2").toggleClass("hidden-code")
 
 #Saving logic
 app.fn 'save', ->

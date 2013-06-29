@@ -12,6 +12,9 @@
           <li title="code" x-bind="click: selectCode" style="display: none;">
             <i class="icon-code"></i>
           </li>
+          <li title="publish" x-bind="click: selectPublish">
+            <i class="icon-publish"></i>
+          </li>
           <li title="tools" x-bind="click: selectTools">
             <i class="icon-tools"></i>
           </li>
@@ -49,17 +52,37 @@
   <section class={{@class}} id="box-1">
 
   <div>
+    
+		<div class="md-overlay"></div><!-- the overlay element -->
+    
+    <button class="md-trigger" data-modal="modal-16" onclick="$('#modal-16').toggleClass('md-show')">Blur</button>
+    
+    <div class="md-modal md-effect-16" id="modal-16">
+    			<div class="md-content">
+    				<h3>Modal Dialog</h3>
+    				<div>
+    					<p>This is a modal window. You can do the following things with it:</p>
+    					<ul>
+    						<li><strong>Read:</strong> modal windows will probably tell you something important so don't forget to read what they say.</li>
+    						<li><strong>Look:</strong> a modal window enjoys a certain kind of attention; just look at it and appreciate its presence.</li>
+    						<li><strong>Close:</strong> click on the button below to close the modal.</li>
+    					</ul>
+    					<button class="md-close">Close me!</button>
+    				</div>
+    			</div>
+    	</div>
+          
   {#if _page.loading}THE PAGE IS LOADING, NOT SURE WHY SLOW{/}
   <!-- these can be moved to where they should be -->
   set the inlet name: <input value={_page.inletTitle} class="{_page.titleValidation}"></input><br>
-  save: <button x-bind="click: save" disabled="{equal(_page.titleValidation, 'invalid')}">Save</button><br>
-  fork: <button x-bind="click: fork">Fork</button><br>
-  new: <button x-bind="click: new">New</button><br>
-  save to gist: <button x-bind="click: exportToGist">Export</button><br>
+  <button x-bind="click: save" disabled="{equal(_page.titleValidation, 'invalid')}">Save</button><br>
+  <button x-bind="click: fork">Fork this inlet</button><br>
+  <button x-bind="click: new">New inlet</button><br>
+  <button x-bind="click: exportToGist">Export to gist</button><br>
  <a href="{url('list.href')}">LIST OF YOUR INLETS</a><br>
   </div>
 
-   <pre>{_page.inlet.files.inlet.code}</pre>
+   <pre style="display: none;">{_page.inlet.files.inlet.code}</pre>
   </section>
 
 <panel:>
@@ -75,3 +98,8 @@
     </section>
 
   </section>
+  
+  
+<Footer:>
+  <script src="/static/js/cssParser.js" type="text/javascript" charset="utf-8"></script>  
+  
