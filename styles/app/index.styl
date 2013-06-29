@@ -83,17 +83,20 @@ body
       color #E0E0E0
     
     li
+      color: #323232
       width 100%
       padding: 0
       border-bottom: 1px solid rgba(254,254,254, 0.5)
-      background-color: rgba(#CCC, 0.8)
+      background-color: rgba(#EDEDED, 0.65)
       border-radius: 2px
+      transition: all 0.46s ease-in-out
       
       &:last-child
         border-bottom: 0
 
       &:hover
-        background-color: rgba(#999, 0.75)
+        background-color: rgba(#E0E0E0, 0.75)
+        color: black
         
     #icon-bar-content      
       font-size: 1rem
@@ -243,7 +246,12 @@ body
 .hidden-code
   min-width: 0px !important
   width: 0px !important
-  transition: width 0.8s ease-out
+  transition: all 0.8s ease-out
+  overflow: hidden
+  
+  #codetoolbar
+    min-width: 10em
+    //display: none
         
 codeToolbarHeight = 2em      
     
