@@ -1,0 +1,30 @@
+<topbar:>
+  <div class="{{@class}} topbar">
+    <div class="auth">
+  <!--  #github-login-->
+      {{#with users[_session.userId] as :user}}
+      <p>I am <br>
+        {{#if :user}} 
+          logged in as: {{:user.services.github.name}}
+        {{else}}
+          not logged in
+          <br>LOGIN:
+          <a href='/auth/github', style='border: 0px'>
+            <img style='border: 0px', src='http://github.com/intridea/authbuttons/raw/master/png/github_64.png'>
+          </a>
+        {{/}}
+      {{/}}
+  <!--  #instagram-login-->
+  <!--
+      <a href='/auth/instagram', style='border: 0px'>
+        <img style='border: 0px', src='https://instagram.com/static/images/headerWithTitle.png'>
+      </a>
+  -->
+  <!--twitter-login-->
+  <!--
+      <a href='/auth/twitter', style='border: 0px'>
+        <img style='border: 0px', src='https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png'>
+      </a>
+  -->
+    </div>
+  </div>
