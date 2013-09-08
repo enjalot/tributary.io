@@ -16,6 +16,22 @@ body
   margin-left auto
   margin-right auto
   
+/* Topbar Styles */
+.topbar
+    max-height 100px
+    overflow auto
+    border-bottom 1px solid #ccc
+    padding 0.5em
+    
+    .auth
+      text-align right
+      padding 0 1em
+    
+    #github-auth-icon
+      height 1.8em
+      width auto
+      display inline-block
+      vertical-align middle
   
 /* Display styles */  
 
@@ -131,15 +147,19 @@ body
         text-align center
         line-height 1.2em
         
-        /*background-color: #ffffff;*/
+        /*background-color: #ffffff;
         background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 1.00)), to(rgba(237, 237, 237, 0.05)));
         background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1.00), rgba(237, 237, 237, 0.05));
         background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 1.00), rgba(237, 237, 237, 0.05));
         background-image: -o-linear-gradient(top, rgba(255, 255, 255, 1.00), rgba(237, 237, 237, 0.05));
         background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 1.00), rgba(237, 237, 237, 0.05));
         background-image: linear-gradient(top, rgba(255, 255, 255, 1.00), rgba(237, 237, 237, 0.05));
+        */
 
       }
+      
+      h2,h4
+        margin 0.1em 0
       
       h3
         padding 0.2em 0.5em
@@ -239,7 +259,14 @@ body
         opacity 1 !important
         height auto
         padding: 0.5em
+        padding-top: 0
         line-height: 1.7em
+        
+        p
+          margin-top 0
+        
+        #save-inlet-name
+          width 100%
           
       
 /* Code panel styles */  

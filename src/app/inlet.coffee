@@ -153,6 +153,9 @@ app.ready (model) ->
   checkTitle(model, ->)
   model.on 'change', '_page.inletTitle', ->
     checkTitle(model, ->)
+    
+  if !document.location.hash
+    document.location.hash = 'container'
 
 app.fn 'selectFiles',  ->
   console.log "files"
