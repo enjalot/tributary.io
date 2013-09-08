@@ -129,19 +129,25 @@ body
 
       position: absolute
       top: 0
-      left: iconBarContentWidth
+      left: - iconBarContentWidth
       z-index: 1
       opacity: 0.9
 
       &.active {
-        left: - iconBarContentWidth - 2
+        //left: - iconBarContentWidth - 2
       }
       
       &:hover { 
         opacity: 1; 
       
       }
-      
+
+      .panel-title
+        width 100%
+        background-color black
+        color white
+
+
       h1,h2,h3,h4,h5,h6 {
         font-family: sansSerifFonts
         text-align center
@@ -218,7 +224,7 @@ body
           
         .icon-cancel-squared
           opacity: 0.3
-          transition: opacity 0.25s ease-out
+          transition: opacity 0.1s ease-out
           
           &:hover
             opacity 1
@@ -243,7 +249,6 @@ body
           
         
       div div 
-        transition: opacity 0.6s ease-out;
         opacity 0
         height 0
         overflow hidden
@@ -267,6 +272,7 @@ body
         
         #save-inlet-name
           width 100%
+          padding 0.4em
           
       
 /* Code panel styles */  
